@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Продукты</title>
-    <link rel="stylesheet" href="/static/css/products.css/">
-</head>
-<body>
-<div>
-    <a href="/">Главная</a>
-    <a href="/products/">Продукты</a>
-    <a href="/contacts">Контакты</a>
-</div>
+{% extends 'mainapp/base.html' %}
+
+{% block content %}
 <h1 class="products">Продукты</h1>
-</body>
-</html>
+
+<ul>
+    {% for product in products %}
+        <li>{{ product }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
