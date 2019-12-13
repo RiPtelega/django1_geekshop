@@ -3,9 +3,19 @@
 {% block content %}
 <h1 class="products">Продукты</h1>
 
+<h3>Категории</h3>
+<ul>
+    {% for category in categories %}
+        <li>
+            <a href=""> {{ category.name }} </a>
+        </li>
+    {% endfor %}
+</ul>
+
+<h3>Продукты</h3>
 <ul>
     {% for product in products %}
-        <li>{{ product }}</li>
+        <li>{{ product.name }}</li>
     {% endfor %}
 </ul>
 {% endblock %}
