@@ -1,5 +1,14 @@
 {% extends 'mainapp/base.html' %}
 
 {% block content %}
-<h1 class="test">Главная</h1>
+    <h1 class="test">Главная</h1>
+        {% if request.user.is_authenticated %}
+            <h2>Привет, {{ request.user.username|title }}!</h2>
+            <a href="{% url 'auth:logout' %}">Выйти</a>
+            <a href="{% url 'auth:edit' request.user.pk %}">Изменить</a>
+        {% else %}
+            <h2>Привет!</h2>
+            <a href="{% url 'auth:login' %}">Войти</a>
+            <a href="{% url 'auth:register' %}">Зарегистрироваться</a>
+        {% endif %}
 {% endblock %}

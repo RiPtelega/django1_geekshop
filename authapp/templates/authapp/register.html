@@ -1,0 +1,9 @@
+{% extends 'authapp/base.html' %}
+
+{% block content %}
+    <form class="form-horizontal" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="form-control" type="submit" value={{ button_label }}>
+    </form>
+{% endblock %}

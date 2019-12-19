@@ -12,7 +12,7 @@ def load_from_json(filename):
 def save_to_db(filename, Class):
     items = load_from_json(filename)
     for item in items:
-        if item['category']:
+        if Class == Product:
             for category in ProductCategory.objects.all():
                 if item['category'] == category.name:
                     item['category'] = category

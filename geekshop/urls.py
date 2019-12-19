@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
+from django.conf.urls import include
 from django.conf.urls.static import static
 from mainapp.views import main, products, contacts
 
@@ -24,6 +25,7 @@ urlpatterns = [
     path('', main, name='main'),
     path('products/', products, name='products'),
     path('contacts/', contacts, name='contacts'),
+    path('auth/', include('authapp.urls', namespace='auth')),
     path('admin/', admin.site.urls),
 ]
 
