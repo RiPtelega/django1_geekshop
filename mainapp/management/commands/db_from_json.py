@@ -1,7 +1,7 @@
 import json, os
 from mainapp.models import Product, ProductCategory
 
-JSON_PATH = os.path.join('mainapp', 'json')
+JSON_PATH = os.path.join('../..', 'json')
 
 
 def load_from_json(filename):
