@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from mainapp.models import Product, ProductCategory
 from basketapp.models import BasketSlot
 
+
 # links_menu = [
 #     {'href': "main", 'name': 'Главная'},
 #     {'href': "products", 'name': 'Продукты'},
@@ -16,22 +17,22 @@ def main(request):
 def products(request, pk=None):
     products = Product.objects.all()
     basket = []
-    basket_quantity = 0
-    basket_price = 0
-    if request.user:
-        basket = BasketSlot.objects.filter(user=request.user)
-        for slot in basket:
-            basket_quantity += slot.quantity
-            basket_price += slot.price
-    if pk:
+    if request.user.is_authenticated:
+        basket = request.user.basket.all()
+
+    context = {'title': 'Продукты', 'hot_product': Product.objects.filter(is_hot=True).first(),
+               'categories': ProductCategory.objects.all(),
+               'basket': basket}
+    if pk is None:
+        return render(request, 'mainapp/hot_product.html', context)
+
+    if pk > 0:
         category = get_object_or_404(ProductCategory, pk=pk)
         products = products.filter(category=category)
 
     context = {'title': 'Продукты', 'products': products,
                'categories': ProductCategory.objects.all(),
-               'basket': basket,
-               'basket_quantity': basket_quantity,
-               'basket_price': basket_price}
+               'basket': basket}
     return render(request, 'mainapp/products.html', context)
 
 
