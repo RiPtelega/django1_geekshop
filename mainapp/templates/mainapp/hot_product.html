@@ -24,6 +24,8 @@
                       <p class="card-text">{{ hot_product.short_desc }}</p>
                       <h1 style="color: red;">ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</h1>
                       <div style="color: red;">На складе осталось 2 товара. Спешите!!!!!!!</div>
+                      <a href="{% url 'products:product' hot_product.pk %}">Подробнее</a>
+                      <br>
                       <a href="{% url 'basket:add' hot_product.pk %}">Добавить в корзину</a>
                       <br>
                       <a href="{% url 'basket:remove' hot_product.pk %}">Удалить из корзины</a>

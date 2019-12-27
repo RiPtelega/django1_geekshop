@@ -1,7 +1,9 @@
 {% for item in basket_items %}
 <div class="basket_record">
   <span class="category_name">{{ item.product.category.name }}</span>
-  <span class="product_name">{{ item.product.name }}</span>
+  <span class="product_name">
+    <a href="{% url 'products:product' item.product.pk %}">{{ item.product.name }}</a>
+  </span>
   <span class="product_price">{{ item.product.price }}&nbspруб</span>
   <input type="number" min="0"
          name="{{ item.pk }}"

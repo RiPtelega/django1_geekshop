@@ -24,7 +24,9 @@
                       <div class="card-body">
                           <h5 class="card-title">{{ product.name }}</h5>
                           <p class="card-text">{{ product.short_desc }}</p>
-                          <a href="{% url 'basket:add' product.pk %}">Добавить в корзину</a>
+                          <a href="{% url 'products:product' product.pk %}">Подробнее</a>
+                          <br>
+                          <a href="{% url 'products:product' product.pk %}">Добавить в корзину</a>
                           <br>
                           <a href="{% url 'basket:remove' product.pk %}">Удалить из корзины</a>
                       </div>

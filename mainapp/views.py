@@ -36,6 +36,18 @@ def products(request, pk=None):
     return render(request, 'mainapp/products.html', context)
 
 
+def product(request, pk):
+    products = Product.objects.all()
+    basket = []
+    if request.user.is_authenticated:
+        basket = request.user.basket.all()
+    context = {
+        'title': 'Продукты', 'product': get_object_or_404(Product, pk=pk),
+        'categories': ProductCategory.objects.all(),
+        'basket': basket}
+    return render(request, 'mainapp/product.html', context)
+
+
 def contacts(request):
     context = {'title': 'Контакты', 'phones': ['8888888888', '999999999']}
     return render(request, 'mainapp/contacts.html', context)
