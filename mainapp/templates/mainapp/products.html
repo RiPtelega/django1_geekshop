@@ -1,11 +1,13 @@
 {% extends 'mainapp/base.html' %}
+{% load custom_tags %}
 
 {% block content %}
     <h1 class="products">Продукты</h1>
 
 {% if basket %}
-<div>Количество продуктов в корзине: {{ basket_quantity }} шт.</div>
-<div>Стоимость продуктов в корзине: {{ basket_price }} р.</div>
+<div>Количество разных продуктов в корзине: {{ basket|length }} </div>
+<div>Количество продуктов в корзине: {{ basket|basket_total_quantity }} шт.</div>
+<div>Общая стоимость корзины: {{ basket|basket_total_cost }} р.</div>
 {% endif %}
 
     <h3>Категории</h3>
@@ -22,7 +24,9 @@
                       <div class="card-body">
                           <h5 class="card-title">{{ product.name }}</h5>
                           <p class="card-text">{{ product.short_desc }}</p>
-                          <a href="{% url 'basket:add' product.pk %}">Добавить в корзину</a>
+                          <a href="{% url 'products:product' product.pk %}">Подробнее</a>
+                          <br>
+                          <a href="{% url 'products:product' product.pk %}">Добавить в корзину</a>
                           <br>
                           <a href="{% url 'basket:remove' product.pk %}">Удалить из корзины</a>
                       </div>

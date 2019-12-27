@@ -1,0 +1,63 @@
+{% extends 'mainapp/base.html' %}
+{% load custom_tags %}
+
+{% block content %}
+    <h1 class="products">Продукты</h1>
+
+{% if basket %}
+<div>Количество разных продуктов в корзине: {{ basket|length }} </div>
+<div>Количество продуктов в корзине: {{ basket|basket_total_quantity }} шт.</div>
+<div>Общая стоимость корзины: {{ basket|basket_total_cost }} р.</div>
+{% endif %}
+
+    <h3>Категории</h3>
+{% include 'mainapp/includes/inc_category_menu.html' %}
+
+
+<h3>Продукты</h3>
+    <div class="details-products">
+
+        <div class="details-slider">
+            <div class="slider-product">
+                <img src="/media/{{ product.image }}"
+                     alt="{{ product.short_desc }}">
+            </div>
+        <div class="slider-control">
+            <div class="block">
+                <a href="#">
+                    <img src="/media/{{ product.image }}" alt="вариант 1">
+                </a>
+            </div>
+            <div class="block">
+                <a href="#">
+                    <img src="/media/{{ product.image }}" alt="вариант 2">
+                </a>
+            </div>
+            <div class="block">
+                <a href="#">
+                    <img src="/media/{{ product.image }}" alt="вариант 3">
+                </a>
+            </div>
+        </div>
+        </div>
+        <br>
+
+        <div class="description">
+            <h3 class="big-bold">{{ product.name }}</h3>
+            <br>
+            <p class="price"> {{ product.price }} <span>руб</span></p>
+            <a href="{% url 'basket:add' product.pk %}" class="red-button">
+                Добавить в корзину
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </a>
+            <br>
+            <a href="{% url 'basket:remove' product.pk %}" class="red-button">Удалить из корзины</a>
+
+            <div class="description-text">
+                {{ product.description }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

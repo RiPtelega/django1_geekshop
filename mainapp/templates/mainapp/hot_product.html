@@ -1,0 +1,36 @@
+{% extends 'mainapp/base.html' %}
+{% load custom_tags %}
+
+{% block content %}
+    <h1 class="products">Продукты</h1>
+
+{% if basket %}
+<div>Количество разных продуктов в корзине: {{ basket|length }} </div>
+<div>Количество продуктов в корзине: {{ basket|basket_total_quantity }} шт.</div>
+<div>Общая стоимость корзины: {{ basket|basket_total_cost }} р.</div>
+{% endif %}
+
+    <h3>Категории</h3>
+{% include 'mainapp/includes/inc_category_menu.html' %}
+
+
+<h3>Продукты</h3>
+    <div style="display: flex; flex-wrap: wrap;" class="category-products clearfix">
+        <div style="margin: 20px" class="block">
+              <div class="card" style="width: 18rem;">
+                  <img src="/media/{{ hot_product.image }}" class="card-img-top" alt="hot_product">
+                  <div class="card-body">
+                      <h5 class="card-title">{{ hot_product.name }}</h5>
+                      <p class="card-text">{{ hot_product.short_desc }}</p>
+                      <h1 style="color: red;">ГОРЯЧЕЕ ПРЕДЛОЖЕНИЕ</h1>
+                      <div style="color: red;">На складе осталось 2 товара. Спешите!!!!!!!</div>
+                      <a href="{% url 'products:product' hot_product.pk %}">Подробнее</a>
+                      <br>
+                      <a href="{% url 'basket:add' hot_product.pk %}">Добавить в корзину</a>
+                      <br>
+                      <a href="{% url 'basket:remove' hot_product.pk %}">Удалить из корзины</a>
+                  </div>
+              </div>
+          </div>
+    </div>
+{% endblock %}
