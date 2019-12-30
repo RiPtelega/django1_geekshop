@@ -1,0 +1,11 @@
+{% extends 'adminapp/base.html' %}
+
+{% block content %}
+<h2>Категории</h2>
+{% include 'adminapp/includes/inc_category_menu.html' %}
+<form class="form-horizontal" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Применить">
+</form>
+{% endblock %}

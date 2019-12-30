@@ -4,11 +4,7 @@
 {% block content %}
     <h1 class="products">Продукты</h1>
 
-{% if basket %}
-<div>Количество разных продуктов в корзине: {{ basket|length }} </div>
-<div>Количество продуктов в корзине: {{ basket|basket_total_quantity }} шт.</div>
-<div>Общая стоимость корзины: {{ basket|basket_total_cost }} р.</div>
-{% endif %}
+{% include 'mainapp/includes/inc_basket_counter.html' %}
 
     <h3>Категории</h3>
 {% include 'mainapp/includes/inc_category_menu.html' %}
