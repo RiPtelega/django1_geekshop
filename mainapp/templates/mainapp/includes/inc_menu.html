@@ -33,4 +33,14 @@
             Корзина
         </a>
     </div>
+    {% if request.user.is_superuser %}
+        <div class="menu-item">
+            <a href="{% url 'admin_custom:products' %}"
+                class="{% if request.resolver_match.namespace == 'admin_custom' %}
+                        active
+                       {% endif %}">
+                Админка
+            </a>
+        </div>
+    {% endif %}
 </ul>

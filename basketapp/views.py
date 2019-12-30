@@ -32,6 +32,8 @@ def add(request, product_pk):
 def remove(request, product_pk):
     product = get_object_or_404(Product, pk=product_pk)
     basket_slot = BasketSlot.objects.filter(product=product.pk).first()
+    if 'login' in request.META.get('HTTP_REFERER'):
+        return HttpResponseRedirect(reverse('products:product', args=[product_pk]))
     if basket_slot:
         if basket_slot.quantity <= 1:
             basket_slot.delete()

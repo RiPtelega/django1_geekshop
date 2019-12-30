@@ -13,3 +13,11 @@
 .active {
     background-color: cornflowerblue;
 }
+
+.category_record.not_active {
+    opacity: 0.5;
+}
+
+.user_record.not_active {
+    opacity: 0.5;
+}

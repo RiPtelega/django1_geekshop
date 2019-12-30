@@ -1,0 +1,16 @@
+{% extends 'adminapp/base.html' %}
+
+{% block content %}
+<h2>Категории</h2>
+{% include 'adminapp/includes/inc_category_menu.html' %}
+<h1>{{ object.name }}</h1>
+<img width="200" src='/media/{{ object.image }}/'>
+<p>{{ object.short_desc }}</p>
+<a href="{% url 'admin_custom:product_update' object.pk %}">Редактировать</a>
+<br>
+<a href="{% url 'admin_custom:product_delete' object.pk %}">Удалить</a>
+<br>
+<br>
+<a href="{% url 'admin_custom:products' %}"> <-- Ко всем продуктам</a>
+{% endblock %}
+
