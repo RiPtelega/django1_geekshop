@@ -18,7 +18,7 @@ def products(request, pk=None):
     products = Product.objects.all()
     basket = []
     if request.user.is_authenticated:
-        basket = request.user.basket.all()
+        basket = request.user.basket.select_related('product').all()
 
     context = {'title': 'Продукты', 'hot_product': Product.objects.filter(is_hot=True).first(),
                'categories': ProductCategory.objects.all(),
@@ -40,7 +40,7 @@ def product(request, pk):
     products = Product.objects.all()
     basket = []
     if request.user.is_authenticated:
-        basket = request.user.basket.all()
+        basket = request.user.basket.select_related('product').all()
     context = {
         'title': 'Продукты', 'product': get_object_or_404(Product, pk=pk),
         'categories': ProductCategory.objects.all(),
