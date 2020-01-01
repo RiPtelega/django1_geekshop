@@ -19,6 +19,8 @@ from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls.static import static
 from mainapp import views as mainapp
+if settings.DEBUG:
+    import debug_toolbar
 
 
 urlpatterns = [
@@ -29,6 +31,7 @@ urlpatterns = [
     path('basket/', include('basketapp.urls', namespace='basket')),
     path('admin_custom/', include('adminapp.urls', namespace='admin_custom')),
     path('admin/', admin.site.urls),
+    path('__debug__/', include(debug_toolbar.urls)),
 ]
 
 if settings.DEBUG:
